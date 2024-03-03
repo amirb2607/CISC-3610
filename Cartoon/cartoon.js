@@ -5,12 +5,12 @@ canvas.style.background = "grey";
 
 drawSun();
 drawClouds(100);
-for (let i = 0; i < canvas.width; i = i + 200) { //Loop to draw trees on the canvas
+for (let i = 0; i < canvas.width; i = i + 175) { //Loop to draw trees on the canvas
     drawTree(i, 200);
 }
 drawGround();
 drawFence();
-drawHouse(canvas.width/2, canvas.height/2);
+drawHouse(canvas.width/2-75, canvas.height/2);
 
 
 ctx.fillStyle = "black";
