@@ -10,14 +10,8 @@ for (let i = 0; i < canvas.width; i = i + 175) { //Loop to draw trees on the can
 }
 drawGround();
 drawFence();
-drawHouse(canvas.width/2-75, canvas.height/2);
-
-
-ctx.fillStyle = "black";
-ctx.font = "bold 16px Arial";
-ctx.textAlign = 'center';
-ctx.textBaseline = 'bottom';
-ctx.fillText("Gloomy Day by Amir", (canvas.width / 2), (canvas.height));
+drawHouse(canvas.width/2 - 75, canvas.height/2);
+drawText();
 
 function drawSun() {
     ctx.beginPath();
@@ -149,4 +143,12 @@ function drawFence() {
 function drawFencePost(x, y, width) {
     ctx.fillStyle = "white";
     ctx.fillRect(x, y, width, -100); // -100 for the height to draw upwards
+}
+
+function drawText() {
+    ctx.fillStyle = "black";
+    ctx.font = "bold 16px Arial";
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'bottom';
+    ctx.fillText("Gloomy Day by Amir", (canvas.width / 2), (canvas.height));
 }
