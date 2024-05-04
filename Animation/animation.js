@@ -5,9 +5,11 @@ const frames = ["pikachu/1.gif", "pikachu/2.gif", 'pikachu/3.gif', 'pikachu/4.gi
 
 let currentFrame = 0;
 
+let lastFrameUpdate = Date.now();
+let lastMoveUpdate = Date.now();
 let images = [];
 let frameDelay = 650; //Delay in ms
-let moveDelay = 50; //Delay in ms
+let moveDelay = 30; //Delay in ms
 let x_coord = 0; //X Coordinate Value for Animation Image.
 let direction = 1; //1 for right, -1 for left.
 
@@ -21,6 +23,8 @@ for (let i = 0; i < frames.length; i++) {
 canvas.style.background = "grey";
 
 function updateAnimation() {
+    let now = Date.now();
+    
     // Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
@@ -41,21 +45,26 @@ function updateAnimation() {
     if (direction === -1) {
         ctx.scale(-1, 1); // Flip the image horizontally
     }
-    ctx.drawImage(images[currentFrame], 0, 0, images[currentFrame].width, images[currentFrame].height, 0, 0, 150, 150);
+    ctx.drawImage(images[currentFrame], 0, 0, images[currentFrame].width - 100, images[currentFrame].height - 10, 0, 0, 150, 150);
     ctx.restore(); // Restore the state
+    // Update the frame if enough time has passed
 
-    // Move to the next frame, looping back if at the end
-    currentFrame = (currentFrame + 1) % frames.length;
-
-    // Update the x-coordinate and check for boundaries
-    x_coord = x_coord + (5 * direction);
-    if (x_coord > canvas.width - 150) { // Reached the right boundary
-        direction = -1;
-    } else if (x_coord < 150) { // Reached the left boundary
-        direction = 1;
+    if (now - lastFrameUpdate > frameDelay) {
+        // Move to the next frame, looping back if at the end
+        currentFrame = (currentFrame + 1) % frames.length;
+        lastFrameUpdate = now;
     }
 
-    setTimeout(updateAnimation, delay);
+    if (now - lastMoveUpdate > moveDelay) {
+        x_coord = x_coord + (5 * direction);
+        if (x_coord > canvas.width) { // Reached the right boundary
+            direction = -1;
+        } else if (x_coord < 0) { // Reached the left boundary
+            direction = 1;
+        }
+        lastMoveUpdate = now;
+    }
+    requestAnimationFrame(updateAnimation);
 }
 
 // Call updateAnimation once to start the animation
