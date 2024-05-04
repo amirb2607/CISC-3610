@@ -1,33 +1,65 @@
 const canvas = document.getElementById("myCanvas");
 const ctx = canvas.getContext("2d");
-const frames = [, "pikachu/1.png", "pikachu/2.gif", 'pikachu/3.gif', 'pikachu/4.gif', 'pikachu/5.gif',
+const frames = ["pikachu/1.gif", "pikachu/2.gif", 'pikachu/3.gif', 'pikachu/4.gif', 'pikachu/5.gif',
 'pikachu/6.gif', 'pikachu/7.gif', 'pikachu/8.gif', 'pikachu/9.gif'];
 
 let currentFrame = 0;
-var img = document.getElementById("animation");
+
+let images = [];
+let frameDelay = 650; //Delay in ms
+let moveDelay = 50; //Delay in ms
+let x_coord = 0; //X Coordinate Value for Animation Image.
+let direction = 1; //1 for right, -1 for left.
+
+// Load all images
+for (let i = 0; i < frames.length; i++) {
+    let img = new Image();
+    img.src = frames[i];
+    images.push(img);
+}
 
 canvas.style.background = "grey";
 
-drawSun();
-drawClouds(100);
-for (let i = 0; i < canvas.width; i = i + 175) { //Loop to draw trees on the canvas
-    drawTree(i, 200);
-}
-drawGround();
-drawFence();
-drawHouse(canvas.width/2 - 75, canvas.height/2);
-drawText();
-
 function updateAnimation() {
-    // Update the image source to the current frame
-    document.getElementById('animation').src = frames[currentFrame];
+    // Clear the canvas
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    // Draw the background
+    drawSun();
+    drawClouds(100);
+    for (let i = 0; i < canvas.width; i = i + 175) { //Loop to draw trees on the canvas
+        drawTree(i, 200);
+    }
+    drawGround();
+    drawFence();
+    drawHouse(canvas.width/2 - 75, canvas.height/2);
+    drawText();
+
+    // Draw the current frame
+    ctx.save(); // Save the current state
+    ctx.translate(x_coord, canvas.height - 175); // Move to the new drawing location
+    if (direction === -1) {
+        ctx.scale(-1, 1); // Flip the image horizontally
+    }
+    ctx.drawImage(images[currentFrame], 0, 0, images[currentFrame].width, images[currentFrame].height, 0, 0, 150, 150);
+    ctx.restore(); // Restore the state
+
     // Move to the next frame, looping back if at the end
     currentFrame = (currentFrame + 1) % frames.length;
-  
-    // Request the next frame update
-    requestAnimationFrame(updateAnimation);
-  }
+
+    // Update the x-coordinate and check for boundaries
+    x_coord = x_coord + (5 * direction);
+    if (x_coord > canvas.width - 150) { // Reached the right boundary
+        direction = -1;
+    } else if (x_coord < 150) { // Reached the left boundary
+        direction = 1;
+    }
+
+    setTimeout(updateAnimation, delay);
+}
+
+// Call updateAnimation once to start the animation
+updateAnimation();
 
 function drawSun() {
     ctx.beginPath();
@@ -35,22 +67,6 @@ function drawSun() {
     ctx.fillStyle = "yellow"; // Sun color
     ctx.fill();
     ctx.closePath();
-
-    // Draw sun rays
-    for (let i = 0; i < 12; i++) {
-        const angle = (i * 30) * (Math.PI / 180); // Convert degrees to radians
-        const x1 = 0 + 75 * Math.cos(angle);
-        const y1 = 0 + 75 * Math.sin(angle);
-        const x2 = 0 + 0 * Math.cos(angle);
-        const y2 = 0 + 0 * Math.sin(angle);
-
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.strokeStyle = "yellow"; // Sun ray color
-        ctx.stroke();
-        ctx.closePath();
-    }
 }
 
 function drawClouds(numClouds) {
