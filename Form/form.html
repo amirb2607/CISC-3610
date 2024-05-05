@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Project</title>
+    <link rel="stylesheet" type="text/css" href="style.css"></head>
+<body class = "bg-img">
+    <h2>Interest Calculator</h2>
+    <form id="interestForm">
+        <label for="principal">Principal Amount:</label><br>
+        <input type="number" id="principal" name="principal"><br>
+        <label for="rate">Interest Rate (as %):</label><br>
+        <input type="number" id="rate" name="rate"><br>
+        <label for="Years">Total Year(s):</label><br>
+        <input type="number" id="year" name="year"><br>
+        <input type="button" value="Calculate">
+        <input type="reset" value="Reset">
+    </form>
+    <p id="result"></p>
+    <p id="return"></p>
+    <script src="script.js"></script>
+</body>
+</html>
