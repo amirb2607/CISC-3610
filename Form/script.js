@@ -7,8 +7,11 @@ document.getElementById('interestForm').addEventListener('submit', function(even
 
     var amount = principal * Math.pow((1 + rate / 100), year);
 
-    document.getElementById('result').innerHTML = 'After ' + year + ' years, your investment will be worth $' + amount.toFixed(2);
-    document.getElementById('return').innerHTML = 'Total Return of $' + (amount.toFixed(2) - principal);
+    var resultText = 'After ' + year + ' years, your investment will be worth $' + amount.toFixed(2);
+    var returnText = 'Total return of $' + (amount.toFixed(2) - principal) + '!';
+
+    document.getElementById('result').innerHTML = resultText + '<br>';
+    document.getElementById('return').innerHTML = returnText + '<br>';
 
     localStorage.setItem('principal', principal);
     localStorage.setItem('rate', rate);

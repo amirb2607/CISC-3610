@@ -1,9 +1,6 @@
 body, html {
     margin: 0;
     height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     color: #FFFFFF
 }
 
@@ -32,9 +29,10 @@ body, html {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height: 100vh;
     position: absolute;
     right: 0;
-    margin: 20px;
+    margin: 50px;
     max-width: 300px;
     padding: 16px;
     background-color: white;
@@ -52,19 +50,4 @@ input[type=number] {
 input[type=number]:focus {
     background-color: #ddd;
     outline: none;
-}
-
-/* Set a style for the submit button */
-.btn {
-    background-color: #04AA6D;
-    color: white;
-    padding: 16px 20px;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-.btn:hover {
-    opacity: 1;
 }
