@@ -7,7 +7,8 @@ function daysAgo(date) {
 }
 
 window.onload = function() {
-    var dates = ["2024-03-04", "2024-02-26" ,"2024-02-28" ,"2024-03-04", "2024-03-11" ,"2024-03-18" ,"2024-03-25"]; // Replace with your dates
+    var dates = ["2024-03-04", "2024-02-26" ,"2024-02-28" ,"2024-03-04", 
+    "2024-03-11" ,"2024-03-18" ,"2024-03-25"];
     for (var i = 0; i < dates.length; i++) {
         var days = daysAgo(dates[i]);
         document.getElementById("daysAgo" + (i + 1)).textContent = days + " days ago";
