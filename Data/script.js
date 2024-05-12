@@ -55,4 +55,4 @@ new Chart(ctx2, {
         borderWidth: 2
       }]
     }
-  });
+});
