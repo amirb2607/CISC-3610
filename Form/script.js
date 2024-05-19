@@ -7,8 +7,8 @@ document.getElementById('interestForm').addEventListener('submit', function(even
 
     var amount = principal * Math.pow((1 + rate / 100), year);
 
-    var resultText = 'After ' + year + ' years, your investment will be worth $' + amount.toFixed(2);
-    var returnText = 'Total return of $' + (amount.toFixed(2) - principal).toFixed(2) + '!';
+    var resultText = 'After ' + year + ' years, your investment will be worth $' + amount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+    var returnText = 'Total return of $' + (amount - principal).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '!';
 
     document.getElementById('result').innerHTML = resultText + '<br>';
     document.getElementById('return').innerHTML = returnText + '<br>';
