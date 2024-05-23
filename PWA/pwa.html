@@ -31,7 +31,7 @@
                         <label for="principal" class="form-label">Principal Amount</label>
                         <div class="input-group has-validation">
                             <span class="input-group-text">$</span>
-                            <input type="text" id="principal" class="form-control" placeholder="Principal Amount" aria-label="Amount (to the nearest dollar)" required>
+                            <input type="text" id="principal" class="form-control" placeholder="Principal Amount" aria-label="Amount (to the nearest dollar)" pattern="^-?[0-9]\d*(\.\d+)?$" required>
                             <div class="invalid-feedback">
                                 Please Provide a Principal Amount!
                             </div>
@@ -40,7 +40,7 @@
                     <div class="mb-3">
                         <label for="rate" class="form-label">Annual Rate of Return (%)</label>
                         <div class="input-group has-validation">
-                            <input type="text" id="rate" class="form-control" name="rate" placeholder="Annual Rate of Return (%)" required>
+                            <input type="text" id="rate" class="form-control" name="rate" placeholder="Annual Rate of Return (%)" pattern="^-?[0-9]\d*(\.\d+)?$" required>
                             <div class="invalid-feedback">
                                 Please Provide an Annual Rate as Percentage Number!
                             </div>
@@ -49,7 +49,7 @@
                     <div class="mb-3">
                         <label for="year" class="form-label">Total Year(s)</label>
                         <div class="input-group has-validation">
-                            <input type="text" id="year" class="form-control" placeholder="Total Year(s)" name="year" required>
+                            <input type="text" id="year" class="form-control" placeholder="Total Year(s)" name="year" pattern="^-?[0-9]\d*(\.\d+)?$" required>
                             <div class="invalid-feedback">
                                 Please Provide a Value for Years!
                             </div>
