@@ -13,9 +13,6 @@ body, html {
     /* The image used */
     background-image: url("images/galaxy.png");
 
-    /* Control the height of the image */
-    min-height: 380px;
-
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
